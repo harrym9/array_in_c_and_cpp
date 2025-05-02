@@ -23,11 +23,13 @@ void Append(struct Array *array, int x){
 
 
 void Insert(struct Array *array, int index, int x){
-    for (int i = array->length; i > index; i--) {
-        array->A[i] = array->A[i-1];
+    if (index >= 0 && array->length < array->size && index <= array->length) {
+        for (int i = array->length; i > index; i--) {
+            array->A[i] = array->A[i-1];
+        }
+        array->A[index] = x;
+        array->length++;
     }
-    array->A[index] = x;
-    array->length++;
 }
 
 
