@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct Array {
-    int A[20];
+    int A[10];
     int size;
     int length;
 };
@@ -59,8 +59,8 @@ int LinearSearch(struct Array *array, int key){
 int BinarySearch(struct Array *array, int key){
     int low = 0;
     int high = array->length-1;
-    int mid = (low + high) / 2;
     while (low <= high){
+        int mid = (low + high) / 2;
         if (array->A[mid] == key){
             return mid;
         }
@@ -77,7 +77,7 @@ int BinarySearch(struct Array *array, int key){
 int main(int argc, const char * argv[]) {
     struct Array my_array = {{1, 2, 3, 4, 5}, 10, 5};
     
-    printf("index number is %d\n", BinarySearch(&my_array, 3));
+    printf("index number is %d\n", BinarySearch(&my_array, 8));
     Display(my_array);
     printf("\n");
     
