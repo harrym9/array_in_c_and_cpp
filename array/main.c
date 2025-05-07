@@ -58,7 +58,8 @@ int LinearSearch(struct Array *array, int key){
 
 int BinarySearch(struct Array *array, int key){
     int low = 0;
-    int high = array->length-1;
+    int high = array->length - 1;
+    
     while (low <= high){
         int mid = (low + high) / 2;
         if (array->A[mid] == key){
@@ -74,10 +75,27 @@ int BinarySearch(struct Array *array, int key){
     return -1;
 }
 
+int RBinarySearch(struct Array *array, int low, int high, int key){
+    if (low > high) {
+        return -1;
+    }
+    int mid = (low + high) / 2;
+    if (array->A[mid] == key){
+        return mid;
+    }
+    else if (key > array->A[mid]){
+        return RBinarySearch(array, mid + 1, high, key);
+    }
+    else{
+        return RBinarySearch(array, low, mid - 1, key);
+    }
+    return -1;
+}
+
 int main(int argc, const char * argv[]) {
     struct Array my_array = {{1, 2, 3, 4, 5}, 10, 5};
     
-    printf("index number is %d\n", BinarySearch(&my_array, 8));
+    printf("index number is %d\n", RBinarySearch(&my_array, 0, 5, 5));
     Display(my_array);
     printf("\n");
     
