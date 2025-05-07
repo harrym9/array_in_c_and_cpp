@@ -56,6 +56,7 @@ int LinearSearch(struct Array *array, int key){
     return -1;
 }
 
+
 int BinarySearch(struct Array *array, int key){
     int low = 0;
     int high = array->length - 1;
@@ -75,6 +76,7 @@ int BinarySearch(struct Array *array, int key){
     return -1;
 }
 
+
 int RBinarySearch(struct Array *array, int low, int high, int key){
     if (low > high) {
         return -1;
@@ -92,10 +94,59 @@ int RBinarySearch(struct Array *array, int low, int high, int key){
     return -1;
 }
 
+
+int Get(struct Array *array, int index){
+    if (index < 0 && index >= array->length)
+        return -1;
+    return array->A[index];
+}
+
+
+void Set(struct Array *array, int index, int new_key){
+    if (index < 0 || index >= array->length){
+        printf("Index exceeded current length or too low");
+        return;
+    }
+    array->A[index] = new_key;
+    printf("Success");
+}
+
+
+int Max(struct Array *array){
+    int max = array->A[0];
+    for (int i = 1; i < array->length; i++){
+        if (array->A[i] > max) {
+            max = array->A[i];
+        }
+    }
+    return max;
+}
+
+
+int Min(struct Array *array){
+    int min = array->A[0];
+    for (int i = 1; i < array->length; i++){
+        if (array->A[i] < min) {
+            min = array->A[i];
+        }
+    }
+    return min;
+}
+
+
+double Average(struct Array *array){
+    int total = 0;
+    for (int i = 0; i < array->length; i++){
+        total += array->A[i];
+    }
+    return total / array->length;
+}
+
+
 int main(int argc, const char * argv[]) {
-    struct Array my_array = {{1, 2, 3, 4, 5}, 10, 5};
+    struct Array my_array = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 10, 10};
     
-    printf("index number is %d\n", RBinarySearch(&my_array, 0, 5, 5));
+    printf("%f\n", Average(&my_array));
     Display(my_array);
     printf("\n");
     
