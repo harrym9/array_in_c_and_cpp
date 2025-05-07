@@ -147,10 +147,33 @@ float Average(struct Array array){
 }
 
 
+void ReverseWithCopy(struct Array *array){
+    int length = array->length;
+    int *temp_array = (int *)malloc(length * sizeof(int));
+    
+    for (int i = 0, j = length - 1; i < length; i++, j--) {
+        temp_array[i] = array->A[j];
+    }
+    
+    for (int i = 0; i < length; i++) {
+        array->A[i] = temp_array[i];
+    }
+}
+
+
+void ReverseWithSwap(struct Array *array){
+    for(int i = 0, j = array->length-1; i <= j; i++, j--){
+        int temp = array->A[i];
+        array->A[i] = array->A[j];
+        array->A[j] = temp;
+    }
+}
+
+
 int main(int argc, const char * argv[]) {
     struct Array my_array = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 10, 10};
     
-    printf("%.2f\n", Average(my_array));
+    ReverseWithSwap(&my_array);
     Display(my_array);
     printf("\n");
     
