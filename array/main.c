@@ -42,6 +42,25 @@ void Insert(struct Array* array, int index, int x)
 }
 
 
+void InsertSort(struct Array* array, int x)
+{
+    if (array->length == array->size)
+    {
+        return;
+    }
+
+    int i = array->length - 1;
+
+    while (i >= 0 && array->A[i] > x)
+    {
+        array->A[i + 1] = array->A[i];
+        i--;
+    }
+    array->A[i + 1] = x;
+    array->length++;
+}
+
+
 int Delete(struct Array* array, int index)
 {
     if (index >= 0 && array->length < array->size && index <= array->length)
@@ -211,7 +230,7 @@ void ReverseWithSwap(struct Array* array)
 }
 
 
-bool isSorted(struct Array array, int size)
+bool IsSorted(struct Array array, int size)
 {
     for (int i = 0; i < size - 1; i++)
     {
@@ -226,9 +245,9 @@ bool isSorted(struct Array array, int size)
 
 int main(int argc, const char* argv[])
 {
-    struct Array my_array = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 10, 10};
+    struct Array my_array = {{1, 2, 3, 4, 5, 6, 8, 10}, 10, 8};
 
-    printf("%d\n", isSorted(my_array, my_array.size));
+    InsertSort(&my_array, 9);
     Display(my_array);
 
     return 0;
